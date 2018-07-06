@@ -26,7 +26,7 @@ public class BinaryTree<E> {
      * Answer my rootNode
      * @return BinaryTreeNode<E>
      */
-    protected BinaryTreeNode<E> getRootNode() {
+    public BinaryTreeNode<E> getRootNode() {
         return rootNode;
     }
 
@@ -34,7 +34,7 @@ public class BinaryTree<E> {
      * Set my rootNode
      * @param rootNode BinaryTreeNode<E>
      */
-    protected void setRootNode(BinaryTreeNode<E> rootNode) {
+    public void setRootNode(BinaryTreeNode<E> rootNode) {
         this.rootNode = rootNode;
     }
 

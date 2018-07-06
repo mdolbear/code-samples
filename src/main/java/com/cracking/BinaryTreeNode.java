@@ -46,7 +46,7 @@ public class BinaryTreeNode<E> {
      * Answer my leftChild
      * @return BinaryTreeNode<E>
      */
-    protected BinaryTreeNode<E> getLeftChild() {
+    public BinaryTreeNode<E> getLeftChild() {
         return leftChild;
     }
 
@@ -92,7 +92,7 @@ public class BinaryTreeNode<E> {
      * Answer my rightChild
      * @return BinaryTreeNode<E>
      */
-    protected BinaryTreeNode<E> getRightChild() {
+    public BinaryTreeNode<E> getRightChild() {
         return rightChild;
     }
 
@@ -118,7 +118,7 @@ public class BinaryTreeNode<E> {
      * Answer my data
      * @return E
      */
-    protected E getData() {
+    public E getData() {
         return data;
     }
 

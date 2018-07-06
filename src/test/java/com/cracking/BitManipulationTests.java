@@ -149,4 +149,112 @@ public class BitManipulationTests {
         assertTrue("Test2", tempNumberOfBits ==32);
         
     }
+    
+    /**
+     * Test even and odd bits switched - brute force
+     */
+    @Test
+    public void evenAndOddBitsSwitchedTestBruteForce() {
+        
+        BitManipulationChallenges       tempManipulator = new BitManipulationChallenges();
+        int                             tempValue;
+        int                             tempResult;
+        
+        //Test 1
+        tempValue = 0x000000aa;
+        tempResult = tempManipulator.asEvenAndOddBitsSwitchedBruteForce(tempValue);
+        assertTrue("Test 1", tempResult == 0x00000055);
+        System.out.println("Initial value: " + String.format("%x",tempValue) + " result: " + String.format("%x",tempResult));
+        
+        //Test 2
+        tempValue = 0x000000cc;
+        tempResult = tempManipulator.asEvenAndOddBitsSwitchedBruteForce(tempValue);
+        assertTrue("Test 2", tempResult == 0x000000cc);
+        System.out.println("Initial value: " + String.format("%x",tempValue) + " result: " + String.format("%x",tempResult));
+        
+        //Test 3
+        tempValue = 0x0000c2a3;
+        tempResult = tempManipulator.asEvenAndOddBitsSwitchedBruteForce(tempValue);
+        assertTrue("Test 3", tempResult == 0x0000c153);
+        System.out.println("Initial value: " + String.format("%x",tempValue) + " result: " + String.format("%x",tempResult));
+        
+    }
+    
+    
+    /**
+     * Test even and odd bits switched
+     */
+    @Test
+    public void evenAndOddBitsSwitchedTest() {
+        
+        BitManipulationChallenges       tempManipulator = new BitManipulationChallenges();
+        int                             tempValue;
+        int                             tempResult;
+        
+        //Test 1
+        tempValue = 0x000000aa;
+        tempResult = tempManipulator.asEvenAndOddBitsSwitched(tempValue);
+        assertTrue("Test 1", tempResult == 0x00000055);
+        System.out.println("Initial value: " + String.format("%x",tempValue) + " result: " + String.format("%x",tempResult));
+        
+        //Test 2
+        tempValue = 0x000000cc;
+        tempResult = tempManipulator.asEvenAndOddBitsSwitched(tempValue);
+        assertTrue("Test 2", tempResult == 0x000000cc);
+        System.out.println("Initial value: " + String.format("%x",tempValue) + " result: " + String.format("%x",tempResult));
+        
+        //Test 3
+        tempValue = 0x0000c2a3;
+        tempResult = tempManipulator.asEvenAndOddBitsSwitched(tempValue);
+        assertTrue("Test 3", tempResult == 0x0000c153);
+        System.out.println("Initial value: " + String.format("%x",tempValue) + " result: " + String.format("%x",tempResult));
+        
+        //Test 4
+        tempValue = 0xff00c2a3;
+        tempResult = tempManipulator.asEvenAndOddBitsSwitched(tempValue);
+        assertTrue("Test 4", tempResult == 0xff00c153);
+        System.out.println("Initial value: " + String.format("%x",tempValue) + " result: " + String.format("%x",tempResult));
+        
+        
+    }
+    
+    /**
+     * Draw line test
+     */
+    @Test
+    public void drawLineTest() {
+        
+        BitManipulationChallenges       tempManipulator = new BitManipulationChallenges();
+        byte[][]                        tempDrawingSurface = new byte[64*8][64];
+        
+        tempManipulator.drawLineOn(tempDrawingSurface, 
+                                  -255, 
+                                  -255, 
+                                   255, 
+                                   255);
+        
+        this.dumpByteArray(tempDrawingSurface);
+        
+    }
+    
+    /**
+     * Dump byte array
+     * @param anArray byte[][]
+     */
+    protected void dumpByteArray(byte[][] aDrawingSurface) {
+        
+        for (int i = 0; i < aDrawingSurface.length; i++) {
+            
+            for (int j = 0; j < aDrawingSurface[0].length; j++) {
+                
+                System.out.print(String.format("%x", aDrawingSurface[i][j]) + " ");
+            }
+            
+            System.out.println();
+            
+        }
+        
+    }
+    
+    
 }
