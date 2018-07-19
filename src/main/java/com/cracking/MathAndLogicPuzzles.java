@@ -88,4 +88,29 @@ public class MathAndLogicPuzzles {
         
     }
     
+    /**
+     * Answer the greatest common denominator a la Euclid
+     * @param aValue1 int
+     * @param aValue2 int
+     * @return int
+     */
+    public int computeGreatestCommonDenominatorEuclid(int aValue1, int aValue2) {
+        
+        int         tempResult;
+        
+        if (aValue2 == 0) {
+            
+            tempResult = aValue1;
+        }
+        else {
+            
+            //By the GCD recursive theorem - CLRS - page 934
+            tempResult = 
+                    this.computeGreatestCommonDenominatorEuclid(aValue2, 
+                                                                aValue1 % aValue2);
+        }
+        
+        return tempResult;
+    }
+    
 }

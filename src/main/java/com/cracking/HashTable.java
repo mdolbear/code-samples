@@ -147,9 +147,9 @@ public class HashTable<K, V> {
         else if (this.getTable()[tempHashValue] != null &&
                     this.getTable()[tempHashValue].hasKey(aKey)) {
             
-            //remove head node of list
-            tempExisting = this.getTable()[tempHashValue];
-            this.getTable()[tempHashValue] = null;
+            //remove head node of list -- if there are any remaining
+            //nodes beyond the head, keep them
+            tempExisting = this.removeFirstNodeAtHashValue(tempHashValue);
             
         }
         
@@ -159,6 +159,31 @@ public class HashTable<K, V> {
         }
         
         return tempResult;
+        
+    }
+
+
+    /**
+     * Remove first node at hash value
+     * @param aHashValue
+     * @return
+     */
+    protected LinkedNode<K, V> removeFirstNodeAtHashValue(int aHashValue) {
+        
+        LinkedNode<K, V> tempExisting;
+        
+        tempExisting = this.getTable()[aHashValue];
+        
+        if (tempExisting.getNextNode() != null) {
+            
+            this.getTable()[aHashValue] = tempExisting.getNextNode();
+        }
+        else {
+            
+            this.getTable()[aHashValue] = null;
+        }
+        
+        return tempExisting;
         
     }
     
