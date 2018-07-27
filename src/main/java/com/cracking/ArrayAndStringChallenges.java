@@ -1,18 +1,11 @@
 package com.cracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.oracle.utils.PermutationUtils;
+
+import java.util.*;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.oracle.utils.PermutationUtils;
 
 /**
  *
@@ -901,6 +894,5 @@ public class ArrayAndStringChallenges {
         }
         
     }
-    
-    
+
 }

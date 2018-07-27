@@ -1,10 +1,10 @@
 package com.cracking;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 import java.util.Set;
 
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -712,37 +712,36 @@ public class ArrayAndStringChallengesTest {
      */
     @Test
     public void performZeroMatrixMultiplyTest() {
-        
-        int[][]                     tempMatrix1 = {{0,0,0,0},
-                                                   {0,0,0,0},
-                                                   {0,0,0,0},
-                                                   {0,0,0,0}
-                                                    };
-        
-        int[][]                     tempMatrix2 = {{1, 2, 3, 4, 5},
-                                                  {6, 7, 8, 9, 10},
-                                                  {11,12,0,14,15},
-                                                  {16,17,18,19,20}
-                                                  };
-        ArrayAndStringChallenges    tempChallenge;
-        int[][]                     tempResult;
 
-        
+        int[][] tempMatrix1 = {{0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
+
+        int[][] tempMatrix2 = {{1, 2, 3, 4, 5},
+                {6, 7, 8, 9, 10},
+                {11, 12, 0, 14, 15},
+                {16, 17, 18, 19, 20}
+        };
+        ArrayAndStringChallenges tempChallenge;
+        int[][] tempResult;
+
+
         tempChallenge = new ArrayAndStringChallenges();
-        
+
         System.out.println("Matrix1:");
         this.dumpArray(tempMatrix1);
-        
+
         System.out.println("Matrix2:");
         this.dumpArray(tempMatrix2);
-        
+
         tempResult = tempChallenge.multiply(tempMatrix1, tempMatrix2);
 
         System.out.println("Resulting Matrix:");
         this.dumpArray(tempResult);
-        
+
     }
-    
-    
+
     
 }
