@@ -1,4 +1,4 @@
-package com.oracle.tictactoe.gamemodel;
+package com.oracle.tictactoe;
 
 import com.oracle.tictactoe.TicTacToeApplication;
 import com.oracle.tictactoe.TicTacToeGameService;
