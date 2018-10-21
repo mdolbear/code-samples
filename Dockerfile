@@ -20,4 +20,4 @@ ARG JAR_FILE
 
 ADD ${JAR_FILE} sample-project-1.0-SNAPSHOT.jar
 
-ENTRYPOINT java $JAVA_OPTS $JAVA_ARGS -jar /sample-project-1.0-SNAPSHOT.jar
+ENTRYPOINT java $JAVA_OPTS $JAVA_ARGS -Dspring.profiles.active=prod -jar /sample-project-1.0-SNAPSHOT.jar

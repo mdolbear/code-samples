@@ -2,40 +2,31 @@ package com.oracle.tictactoe.gamemodel;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 /**
  *
  *
  */
 @Entity
-@Table(name="PLAYER")
+@Table(name="player")
 public class Player implements Serializable {
 
     @Id
-    @GeneratedValue
-    @Column(name="ID")   
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
     
     @Enumerated(EnumType.STRING)
-    @Column(name="MARKER")
+    @Column(name="marker")
     private Marker chosenMarker;
     
     @ManyToOne()
-    @JoinColumn(name="GAME_ID")
+    @JoinColumn(name="game_id")
     private TicTacToeGame game;
     
     @Version
-    @Column(name="VERSION")
+    @Column(name="version")
     private long version;
     
     //Constants

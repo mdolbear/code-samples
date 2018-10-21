@@ -8,17 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 import com.oracle.tictactoe.exceptions.GameAlreadyTerminatedException;
 import com.oracle.tictactoe.exceptions.NotThisPlayerTurnException;
@@ -28,27 +18,27 @@ import com.oracle.tictactoe.exceptions.NotThisPlayerTurnException;
  *
  */
 @Entity
-@Table(name="TIC_TAC_TOE")
+@Table(name="tic_tac_toe")
 public class TicTacToeGame implements Serializable {
 
     @Id
-    @GeneratedValue
-    @Column(name="ID")   
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
     
     @Lob
-    @Column(name ="BOARD")
+    @Column(name ="board")
     private Marker[][] board;
     
     @OneToMany(mappedBy = "game", 
                cascade = { CascadeType.ALL })
     private List<Player> players;
     
-    @Column(name="CURRENT_PLAYER")
+    @Column(name="current_player")
     private int playerIndex;
     
     @Enumerated(EnumType.STRING)
-    @Column(name="OUTCOME")
+    @Column(name="outcome")
     private Outcome gameOutcome;
     
     @OneToMany(mappedBy = "game", 
@@ -56,7 +46,7 @@ public class TicTacToeGame implements Serializable {
     private List<GameEvaluation> evaluators;
     
     @Version
-    @Column(name="VERSION")
+    @Column(name="version")
     private long version;
     
     //Constants

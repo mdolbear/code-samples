@@ -1,21 +1,19 @@
 package com.oracle.tictactoe;
 
-import static org.junit.Assert.assertTrue;
-
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
+import com.oracle.tictactoe.gamemodel.Marker;
+import com.oracle.tictactoe.gamemodel.Outcome;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -25,18 +23,26 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.testcontainers.containers.MySQLContainer;
 
-import com.oracle.tictactoe.gamemodel.Marker;
-import com.oracle.tictactoe.gamemodel.Outcome;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  *
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TicTacToeApplication.class)
+@SpringBootTest
 @WebAppConfiguration
+@ActiveProfiles("test")
 public class TicTacToeGameServiceTest {
+
+    @Rule public MySQLContainer mysql = new MySQLContainer();
 
     private MockMvc mockMvc;
     private HttpMessageConverter mappingJacksonwHttpMessageConverter;
@@ -473,7 +479,7 @@ public class TicTacToeGameServiceTest {
     
     /**
      * Perform choose player invocation
-     * @param anGameId Long
+     * @param aGameId Long
      * @param aMarker Marker
      * @param aPlayerIndex int
      * @return MvcResult
@@ -492,13 +498,14 @@ public class TicTacToeGameServiceTest {
             .andReturn();
         
     }
-    
+
     /**
      * Perform make move invocation
-     * @param anGameId Long
-     * @param aMarker Marker
-     * @param aPlayerIndex int
-     * @return MvcResult
+     * @param aGameId
+     * @param aPlayerIndex
+     * @param aRowIndex
+     * @param aColumnIndex
+     * @return
      * @throws Exception
      */
     protected MvcResult performMakeMoveInvocation(Long aGameId,
@@ -519,9 +526,7 @@ public class TicTacToeGameServiceTest {
     
     /**
      * Perform get state invocation
-     * @param anGameId Long
-     * @param aMarker Marker
-     * @param aPlayerIndex int
+     * @param aGameId Long
      * @return MvcResult
      * @throws Exception
      */
@@ -537,7 +542,7 @@ public class TicTacToeGameServiceTest {
     
     /**
      * Perform delete invocation
-     * @param anGameId Long
+     * @param aGameId Long
      * @return MvcResult
      * @throws Exception
      */

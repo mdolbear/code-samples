@@ -3,7 +3,6 @@ logging:
     org.springframework: ERROR
     com.oracle: DEBUG
 
-
 spring:
   profiles:
     active: "dev"
@@ -12,9 +11,50 @@ spring:
 
 spring:
   profiles: dev
-  console.h2.enabled: true
-  h2.console.path: /h2-console
+  datasource:
+    url: jdbc:mysql://localhost:3306/demoprojectsdb
+    driver-class-name: com.mysql.jdbc.Driver
+  flyway:
+    locations: classpath:db/migration
+
   jpa:
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
-    hibernate.ddl-auto: validate
+    hibernate.ddl-auto: none
     hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+---
+spring:
+  profiles: prod
+  flyway:
+    locations: classpath:db/migration
+  datasource:
+    url: jdbc:mysql://mysql:3306/demoprojectsdb
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: guswhana
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate.ddl-auto: none
+    hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+---
+
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:tc:mysql:5.7.22://localhost:3306/demoprojectsdb
+    driver-class-name: com.mysql.jdbc.Driver
+  flyway:
+    locations: classpath:db/migration
+  jpa:
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate.ddl-auto: none
+    hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
