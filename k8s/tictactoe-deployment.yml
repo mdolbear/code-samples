@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tictactoe
+spec:
+  selector:
+    matchLabels:
+      app: tictactoe
+      tier: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tictactoe
+        tier: backend
+    spec:
+      containers:
+      - name: tictactoe
+        image: mdolbear/sample-project:1.0-SNAPSHOT
+        ports:
+        - containerPort: 8080
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
