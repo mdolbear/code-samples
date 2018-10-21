@@ -4,12 +4,12 @@ the hacker x project, which were done quick and dirty in the form that hacker x 
 Other parts of the project would give one a clearer view of my coding style, etc. These are problems that I have enjoyed solving in the 
 areas of data structures, general java, and a rest service that runs in Spring Boot.
 
-Build :
-mvn clean install -DskipTests=true -p build-docker-image
+To successfully run the tests, you need to have docker installed. The tic-tac-toe web service tess use
+test containers. You don't have to install mysql on your box. An image will be pulled down at test time.
 
-Skipping right now because I was trying to get tc-containers to work 
-(https://github.com/testcontainers/testcontainers-java/blob/master/docs/usage/database_containers.md)
-but its blowing up.
+Build :
+
+mvn clean install -p build-docker-image
 
 The above creates a docker image as well.
 

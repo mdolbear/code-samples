@@ -1,6 +1,7 @@
 package com.oracle.tictactoe;
 
 import com.oracle.tictactoe.TicTacToeApplication;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,11 +11,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.core.io.FileSystemResource;
+import org.testcontainers.containers.MySQLContainer;
 
 import java.io.IOException;
 
@@ -23,10 +27,15 @@ import static junit.framework.TestCase.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TicTacToeApplication.class,
                 webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@WebAppConfiguration
+@ActiveProfiles("test")
 public class TicTacToeGameServiceRestTemplateIT {
 
     @LocalServerPort
     private int port;
+
+    @Rule
+    public MySQLContainer mysql = new MySQLContainer();
 
 
     /**
