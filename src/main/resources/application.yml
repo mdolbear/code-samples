@@ -13,7 +13,7 @@ spring:
   profiles: dev
   datasource:
     url: jdbc:mysql://localhost:3306/demoprojectsdb
-    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    driver-class-name: com.mysql.jdbc.Driver
   flyway:
     locations: classpath:db/migration
 
