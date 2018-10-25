@@ -1,7 +1,15 @@
+
+app:
+  applicationName: samples
+  applicationDescription: Sample Application
+
+
 logging:
   level:
     org.springframework: ERROR
     com.oracle: DEBUG
+
+bootstrap-servers: localhost:9092
 
 spring:
   profiles:
@@ -23,6 +31,7 @@ spring:
     hibernate.ddl-auto: none
     hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
 
 ---
 spring:
