@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.kafka.core.KafkaTemplate;
+import lombok.Getter;
+import lombok.AccessLevel;
 
 import com.oracle.tictactoe.gamemodel.Marker;
 import com.oracle.tictactoe.gamemodel.Outcome;
@@ -19,7 +22,15 @@ public class TicTacToeServiceFacadeImpl implements TicTacToeServiceFacade {
 
     @Autowired
     private TicTacToeGameJpaRepository repository;
-    
+
+    @Getter(AccessLevel.PRIVATE)
+    @Autowired
+    private KafkaTemplate<String,String> kafkaTemplate;
+
+    //Constants
+    private static final String GAME_CREATION_TOPIC_NAME = "game-events";
+
+
     /**
      * Answer an instance for the following arguments
      */
@@ -54,10 +65,21 @@ public class TicTacToeServiceFacadeImpl implements TicTacToeServiceFacade {
         tempGame = new TicTacToeGame();
         tempGame.startNewGame();
         this.getRepository().saveAndFlush(tempGame);
-        
+        this.postGameCreatedEvent(tempGame.getId());
+
         return tempGame.getId();
     }
-    
+
+    /**
+     * Post game created event message
+     * @param aGameId Long
+     */
+    private void postGameCreatedEvent(Long aGameId) {
+
+        this.getKafkaTemplate()
+                .send(GAME_CREATION_TOPIC_NAME, "A game was created with id: " + aGameId.toString());
+    }
+
     /* (non-Javadoc)
      * @see com.oracle.tictactoe.persistence.TicTacToeServiceFacade#startNewGame(java.lang.Long)
      */

@@ -19,7 +19,6 @@ import org.testcontainers.containers.MySQLContainer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-@WebAppConfiguration
 @ActiveProfiles("test")
 public class TicTacToeGameServiceFileUploadTest {
 

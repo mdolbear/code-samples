@@ -27,7 +27,6 @@ import static junit.framework.TestCase.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TicTacToeApplication.class,
                 webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@WebAppConfiguration
 @ActiveProfiles("test")
 public class TicTacToeGameServiceRestTemplateIT {
 
