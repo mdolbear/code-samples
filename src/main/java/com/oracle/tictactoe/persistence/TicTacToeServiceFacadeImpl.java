@@ -2,6 +2,8 @@ package com.oracle.tictactoe.persistence;
 
 import java.util.List;
 
+import com.oracle.tictactoe.kafka.EventObject;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -25,7 +27,7 @@ public class TicTacToeServiceFacadeImpl implements TicTacToeServiceFacade {
 
     @Getter(AccessLevel.PRIVATE)
     @Autowired
-    private KafkaTemplate<String,String> kafkaTemplate;
+    private KafkaTemplate<String, EventObject> kafkaTemplate;
 
     //Constants
     private static final String GAME_CREATION_TOPIC_NAME = "game-events";
@@ -77,7 +79,9 @@ public class TicTacToeServiceFacadeImpl implements TicTacToeServiceFacade {
     private void postGameCreatedEvent(Long aGameId) {
 
         this.getKafkaTemplate()
-                .send(GAME_CREATION_TOPIC_NAME, "A game was created with id: " + aGameId.toString());
+                .send(GAME_CREATION_TOPIC_NAME,
+                      new EventObject("GameEvent",
+                                      "A game was created with id: " + aGameId.toString()));
     }
 
     /* (non-Javadoc)

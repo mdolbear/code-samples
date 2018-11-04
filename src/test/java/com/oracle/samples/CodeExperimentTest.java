@@ -1,21 +1,13 @@
 package com.oracle.samples;
 
-import static org.junit.Assert.assertTrue;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oracle.tictactoe.gamemodel.Player;
+import com.oracle.tictactoe.gamemodel.TicTacToeGame;
+import org.junit.Test;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Deque;
+import java.util.*;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.function.IntConsumer;
 import java.util.function.IntFunction;
@@ -24,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -408,7 +400,7 @@ public class CodeExperimentTest {
     
     /**
      * Initialize wells for aPipeline
-     * @param aPipeLine Pipeline
+     * @param aPipeline Pipeline
      */
     protected void initializeWellsFor(Pipeline aPipeline) {
         
@@ -1064,6 +1056,45 @@ public class CodeExperimentTest {
         
         
     }
-   
-   
+
+    /**
+     * Object mapper test
+     */
+    @Test
+    public void objectMapperTest() throws Exception {
+
+        ObjectMapper    tempMapper = new ObjectMapper();
+        TicTacToeGame   tempGame = new TicTacToeGame();
+        byte[]          tempData;
+        TicTacToeGame   tempNewGame;
+
+
+        tempMapper =
+            tempMapper
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        tempGame.startNewGame();
+        this.setUpPlayersForNonPersistentTest(tempGame);
+        System.out.println("Game before: " + tempGame.toString());
+
+        tempData = tempMapper.writeValueAsBytes(tempGame);
+        System.out.println("Bytes written: " + new String(tempData));
+        tempNewGame = tempMapper.readValue(tempData, TicTacToeGame.class);
+
+        System.out.println("Game after: " + tempNewGame.toString());
+
+    }
+
+    /**
+     * Set up players for non-persistent test
+     * @param aGame TicTacToeGame
+     */
+    protected void setUpPlayersForNonPersistentTest(TicTacToeGame aGame) {
+
+        int tempValue = 1;
+
+        for (Player aPlayer: aGame.getPlayers()) {
+
+            aPlayer.setId(new Long(tempValue++));
+        }
+    }
 }

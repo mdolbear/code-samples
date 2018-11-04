@@ -1,16 +1,16 @@
 package com.oracle.tictactoe.kafka;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @Slf4j
@@ -22,7 +22,8 @@ public class KafkaProducerConfig {
      * @return ProducerFactory
      */
     @Bean
-    public ProducerFactory<String, String> producerFactory(KafkaProperties aProperties) {
+    public ProducerFactory<String, EventObject>
+                            producerFactory(KafkaProperties aProperties) {
 
         Map<String, Object> tempConfigProperties =
                     new HashMap();
@@ -32,7 +33,7 @@ public class KafkaProducerConfig {
         tempConfigProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                                  StringSerializer.class);
         tempConfigProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                                 StringSerializer.class);
+                                 EventSerializer.class);
 
         return new DefaultKafkaProducerFactory<>(tempConfigProperties);
 
@@ -43,9 +44,10 @@ public class KafkaProducerConfig {
      * @param producerFactory Map
      */
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate(ProducerFactory<String, String> producerFactory) {
+    public KafkaTemplate<String,EventObject>
+                        kafkaTemplate(ProducerFactory<String,EventObject> producerFactory) {
 
-        return new KafkaTemplate<String,String>(producerFactory);
+        return new KafkaTemplate<String,EventObject>(producerFactory);
     }
 
 }

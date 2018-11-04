@@ -176,7 +176,7 @@ public class TicTacToeGame implements Serializable {
      * Answer my players
      * @return List<Player>
      */
-    protected List<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
