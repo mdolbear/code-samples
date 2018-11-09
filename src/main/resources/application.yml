@@ -10,6 +10,8 @@ logging:
     com.oracle: DEBUG
 
 bootstrap-servers: localhost:9092
+#dozer:
+#  mapping-files: classpath*:/*mapping.xml
 
 spring:
   profiles:

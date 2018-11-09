@@ -2,6 +2,8 @@ package com.oracle.samples;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
 import com.oracle.tictactoe.gamemodel.Player;
 import com.oracle.tictactoe.gamemodel.TicTacToeGame;
 import org.junit.Test;
@@ -1088,7 +1090,7 @@ public class CodeExperimentTest {
      * Set up players for non-persistent test
      * @param aGame TicTacToeGame
      */
-    protected void setUpPlayersForNonPersistentTest(TicTacToeGame aGame) {
+    private void setUpPlayersForNonPersistentTest(TicTacToeGame aGame) {
 
         int tempValue = 1;
 
@@ -1097,4 +1099,47 @@ public class CodeExperimentTest {
             aPlayer.setId(new Long(tempValue++));
         }
     }
+
+
+    /**
+     * Dozer mapper test
+     */
+    @Test
+    public void dozerMapperTest() {
+
+        TicTacToeGame   tempGame = new TicTacToeGame();
+        TicTacToeGame   tempNewGame;
+        Mapper          tempDozerMapper;
+
+
+        this.setUpPlayersForNonPersistentTest(tempGame);
+        System.out.println("Game before: " + tempGame.toString());
+
+        tempDozerMapper = DozerBeanMapperBuilder.buildDefault();
+        tempNewGame = tempDozerMapper.map(tempGame, TicTacToeGame.class);
+        System.out.println("Game after: " + tempNewGame.toString());
+
+        assertTrue("Instance are the same hashcode or different number of players",
+                !this.instancesAreTheSame(tempGame, tempNewGame)
+                 && (tempGame.getPlayers().size() ==
+                            tempNewGame.getPlayers().size()));
+
+    }
+
+    /**
+     * Answer true if anObjectInstance1 and anObjectInstance2 are the same
+     * hashcode. Answer false otherwise
+     * @param anObjectInstance1 Object
+     * @param anObjectInstance2 Object
+     * @return boolean
+     */
+    private boolean instancesAreTheSame(Object anObjectInstance1,
+                                        Object anObjectInstance2) {
+
+        return System.identityHashCode(anObjectInstance1)
+                    == System.identityHashCode(anObjectInstance2);
+
+    }
+
+
 }
