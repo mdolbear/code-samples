@@ -51,7 +51,13 @@ public class DozerExampleMappingTest {
 
         //Create an Instrument from a from a hashmap, but see if it creates the right subclass
         tempInstrument = tempMapper.map(this.createFutureMap(), Instrument.class);
-        assertTrue("Instrument is null", tempInstrument != null);
+        assertTrue("Instrument is null", tempInstrument != null
+                                                            && tempInstrument.getClass().equals(Future.class));
+
+        //Create an Instrument from a hashnmap, but see if it creates the right subclass
+        tempInstrument = tempMapper.map(this.createOptionMap(), Instrument.class);
+        assertTrue("Option is null", tempInstrument != null
+                                                    && tempInstrument.getClass().equals(Option.class));
 
 
     }

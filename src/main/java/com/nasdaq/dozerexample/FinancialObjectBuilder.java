@@ -2,12 +2,8 @@ package com.nasdaq.dozerexample;
 
 import com.github.dozermapper.core.BeanFactory;
 import com.github.dozermapper.core.config.BeanContainer;
-import lombok.NonNull;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Map;
-import java.util.UUID;
 
 
 public class FinancialObjectBuilder implements BeanFactory {
@@ -36,11 +32,11 @@ public class FinancialObjectBuilder implements BeanFactory {
 
     /**
      * Create bean
-     * @param source
-     * @param sourceClass
-     * @param targetBeanId
-     * @param beanContainer
-     * @return
+     * @param source Object
+     * @param sourceClass Class
+     * @param targetBeanId String
+     * @param beanContainer BeanContainer
+     * @return Object
      */
     @Override
     public Object createBean(Object source,
