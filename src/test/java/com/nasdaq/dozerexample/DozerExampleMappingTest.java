@@ -29,6 +29,7 @@ public class DozerExampleMappingTest {
         Option tempOption;
         Equity tempEquity;
         Future tempFuture;
+        Instrument tempInstrument;
 
         //Create the dozer mapper from the builder -- load the xml mapping files
         tempMapper = DozerBeanMapperBuilder
@@ -47,6 +48,11 @@ public class DozerExampleMappingTest {
         //Create a future from a hashmap
         tempFuture = tempMapper.map(this.createFutureMap(), Future.class);
         assertTrue("Future is null", tempFuture != null);
+
+        //Create an Instrument from a from a hashmap, but see if it creates the right subclass
+        tempInstrument = tempMapper.map(this.createFutureMap(), Instrument.class);
+        assertTrue("Instrument is null", tempInstrument != null);
+
 
     }
 

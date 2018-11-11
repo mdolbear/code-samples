@@ -1,5 +1,7 @@
 package com.nasdaq.dozerexample;
 
+import com.github.dozermapper.core.BeanFactory;
+import com.github.dozermapper.core.config.BeanContainer;
 import lombok.NonNull;
 
 import java.math.BigDecimal;
@@ -7,7 +9,8 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.UUID;
 
-public class FinancialObjectBuilder {
+
+public class FinancialObjectBuilder implements BeanFactory {
 
     //Constants -- most are used for the tests
     public static final String INSTRUMENT_TYPE_KEY = "instrumentType";
@@ -32,6 +35,24 @@ public class FinancialObjectBuilder {
     public static final String TIME_EROSION_KEY = "timeErosion";
 
     /**
+     * Create bean
+     * @param source
+     * @param sourceClass
+     * @param targetBeanId
+     * @param beanContainer
+     * @return
+     */
+    @Override
+    public Object createBean(Object source,
+                             Class<?> sourceClass,
+                             String targetBeanId,
+                             BeanContainer beanContainer) {
+
+        return this.createFinancialObject((Map<String, String>)source);
+
+    }
+
+    /**
      * Create a instrument subclass from aMap
      * @param aMap Map<String, String>
      * @return Instrument
@@ -44,15 +65,15 @@ public class FinancialObjectBuilder {
 
         tempInstrumentTypeKey = aMap.get(INSTRUMENT_TYPE_KEY);
 
-        if (tempInstrumentTypeKey.equals(InstrumentType.EQUITY)) {
+        if (tempInstrumentTypeKey.equals(InstrumentType.EQUITY.name())) {
 
             tempResult = new Equity();
         }
-        else if (tempInstrumentTypeKey.equals(InstrumentType.OPTION)) {
+        else if (tempInstrumentTypeKey.equals(InstrumentType.OPTION.name())) {
 
             tempResult = new Option();
         }
-        else if (tempInstrumentTypeKey.equals(InstrumentType.FUTURE)) {
+        else if (tempInstrumentTypeKey.equals(InstrumentType.FUTURE.name())) {
 
             tempResult = new Future();
         }

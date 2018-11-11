@@ -10,7 +10,7 @@
 
     <mapping>
         <class-a>java.util.Map</class-a>
-        <class-b create-method="com.nasdaq.dozerexample.FinancialObjectBuilder.createFinancialObject">
+        <class-b bean-factory="com.nasdaq.dozerexample.FinancialObjectBuilder">
             com.nasdaq.dozerexample.Instrument
         </class-b>
 
