@@ -11,7 +11,7 @@ logging:
 
 bootstrap-servers: localhost:9092
 #dozer:
-#  mapping-files: classpath*:/*mapping.xml
+#  mapping-files: classpath*:dozer/*Mapping.xml
 
 spring:
   profiles:

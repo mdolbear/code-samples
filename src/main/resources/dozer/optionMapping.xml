@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozermapper.github.io/schema/bean-mapping"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping
+          http://dozermapper.github.io/schema/bean-mapping.xsd">
+
+    <mapping>
+        <class-a>java.util.Map</class-a>
+        <class-b >com.nasdaq.dozerexample.Option</class-b>
+
+        <field custom-converter="com.nasdaq.dozerexample.IdCustomConverter">
+            <a>underlyingId</a>
+            <b>underlyingId</b>
+        </field>
+
+        <field>
+            <a>value</a>
+            <b>strikePrice.value</b>
+        </field>
+
+        <field>
+            <a>value</a>
+            <b>strikePrice.value</b>
+        </field>
+
+        <field>
+            <a>strikePriceValue</a>
+            <b>strikePrice.value</b>
+        </field>
+
+        <field>
+            <a>strikePriceCurrency</a>
+            <b>strikePrice.currency</b>
+        </field>
+
+        <field>
+            <a>strikePriceType</a>
+            <b>strikePrice.type</b>
+        </field>
+
+    </mapping>
+
+</mappings>
