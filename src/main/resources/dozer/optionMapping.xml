@@ -19,16 +19,6 @@
         </field>
 
         <field>
-            <a>value</a>
-            <b>strikePrice.value</b>
-        </field>
-
-        <field>
-            <a>strikePriceValue</a>
-            <b>strikePrice.value</b>
-        </field>
-
-        <field>
             <a>strikePriceCurrency</a>
             <b>strikePrice.currency</b>
         </field>
