@@ -14,7 +14,7 @@
         </field>
 
         <field>
-            <a>value</a>
+            <a>strikePriceValue</a>
             <b>strikePrice.value</b>
         </field>
 
