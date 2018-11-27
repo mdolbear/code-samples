@@ -78,10 +78,10 @@ public class TicTacToeServiceFacadeImpl implements TicTacToeServiceFacade {
      */
     private void postGameCreatedEvent(Long aGameId) {
 
-        this.getKafkaTemplate()
-                .send(GAME_CREATION_TOPIC_NAME,
-                      new EventObject("GameEvent",
-                                      "A game was created with id: " + aGameId.toString()));
+//        this.getKafkaTemplate()
+//                .send(GAME_CREATION_TOPIC_NAME,
+//                      new EventObject("GameEvent",
+//                                      "A game was created with id: " + aGameId.toString()));
     }
 
     /* (non-Javadoc)

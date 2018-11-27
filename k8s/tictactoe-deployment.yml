@@ -13,6 +13,7 @@ spec:
       labels:
         app: tictactoe
         tier: backend
+        team: mjdsoft
     spec:
       containers:
       - name: tictactoe

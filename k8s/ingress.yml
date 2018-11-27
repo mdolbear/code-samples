@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tictactoe-ingress
+  namespace: default
+  labels:
+    team: mjdsoft
+spec:
+  rules:
+  - host: mytictactoe.localhost
+    http:
+      paths:
+        - backend:
+            serviceName: tictactoe
+            servicePort: 8080
