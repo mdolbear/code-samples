@@ -134,6 +134,9 @@ prometheus-deployment-7c8fdf9b89-wsbx5   1/1       Running   0          6m
 
 $ kubectl port-forward prometheus-deployment-7c8fdf9b89-wsbx5 9090:9090 -n monitoring
 
+Note that this port forward mechanism can also be used to get directly at services that were created above,
+but the ingress is normally used for that.
+
 Now log into http://localhost:9090
 If you go to Status->Service Discovery
 and click on kubernetes-service-endpoints
