@@ -7,7 +7,6 @@ import io.fabric8.kubernetes.api.model.ReplicationController;
 import io.fabric8.kubernetes.api.model.ReplicationControllerBuilder;
 import io.fabric8.kubernetes.api.model.ResourceQuota;
 import io.fabric8.kubernetes.api.model.ResourceQuotaBuilder;
-import io.fabric8.kubernetes.api.model.Status;
 import io.fabric8.kubernetes.client.APIGroupNotAvailableException;
 import io.fabric8.kubernetes.client.Config;
 import io.fabric8.kubernetes.client.ConfigBuilder;
@@ -20,11 +19,9 @@ import io.fabric8.kubernetes.client.internal.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static io.fabric8.kubernetes.client.Watcher.Action.ERROR;
+public class ExampleKubernetesClient {
 
-public class KafkaUtils {
-
-    private static final Logger logger = LoggerFactory.getLogger(KafkaUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExampleKubernetesClient.class);
 
     public static void main(String[] args) throws InterruptedException {
         String master = "https://localhost:6443/";
