@@ -1,4 +1,4 @@
-package com.nasdaq.dozerexample;
+package com.mjdsoftware.dozerexample;
 
 import lombok.Data;
 

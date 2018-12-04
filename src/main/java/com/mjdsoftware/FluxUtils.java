@@ -1,4 +1,4 @@
-package com.nasdaq;
+package com.mjdsoftware;
 
 import java.time.Duration;
 import java.util.stream.Stream;

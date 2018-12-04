@@ -10,11 +10,11 @@
 
     <mapping>
         <class-a>java.util.Map</class-a>
-        <class-b bean-factory="com.nasdaq.dozerexample.FinancialObjectBuilder">
-            com.nasdaq.dozerexample.Instrument
+        <class-b bean-factory="com.mjdsoftware.dozerexample.FinancialObjectBuilder">
+            com.mjdsoftware.dozerexample.Instrument
         </class-b>
 
-        <field custom-converter="com.nasdaq.dozerexample.IdCustomConverter">
+        <field custom-converter="com.mjdsoftware.dozerexample.IdCustomConverter">
             <a>id</a>
             <b>id</b>
         </field>

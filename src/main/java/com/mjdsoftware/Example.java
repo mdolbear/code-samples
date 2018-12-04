@@ -1,4 +1,4 @@
-package com.nasdaq;
+package com.mjdsoftware;
 
 import io.kubernetes.client.ApiClient;
 import io.kubernetes.client.ApiException;

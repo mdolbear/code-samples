@@ -1,4 +1,4 @@
-package com.nasdaq;
+package com.mjdsoftware;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,8 +6,6 @@ import org.junit.Test;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
-import java.time.temporal.TemporalUnit;
-import java.util.Random;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;

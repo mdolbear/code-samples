@@ -1,4 +1,4 @@
-package com.nasdaq;
+package com.mjdsoftware;
 
 import io.fabric8.kubernetes.api.model.Namespace;
 import io.fabric8.kubernetes.api.model.NamespaceBuilder;

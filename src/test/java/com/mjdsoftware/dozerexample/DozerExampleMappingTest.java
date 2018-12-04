@@ -1,4 +1,4 @@
-package com.nasdaq.dozerexample;
+package com.mjdsoftware.dozerexample;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
@@ -80,10 +80,10 @@ public class DozerExampleMappingTest {
 
         List<String> tempMappingFiles = new ArrayList<String>();
 
-        tempMappingFiles.add("file:/Users/micdol/code/code-samples/src/main/resources/dozer/equityMapping.xml");
-        tempMappingFiles.add("file:/Users/micdol/code/code-samples/src/main/resources/dozer/futureMapping.xml");
-        tempMappingFiles.add("file:/Users/micdol/code/code-samples/src/main/resources/dozer/instrumentMapping.xml");
-        tempMappingFiles.add("file:/Users/micdol/code/code-samples/src/main/resources/dozer/optionMapping.xml");
+        tempMappingFiles.add("file:/Users/michaeld/code/code-samples/src/main/resources/dozer/equityMapping.xml");
+        tempMappingFiles.add("file:/Users/michaeld/code/code-samples/src/main/resources/dozer/futureMapping.xml");
+        tempMappingFiles.add("file:/Users/michaeld/code/code-samples/src/main/resources/dozer/instrumentMapping.xml");
+        tempMappingFiles.add("file:/Users/michaeld/code/code-samples/src/main/resources/dozer/optionMapping.xml");
 
         return tempMappingFiles;
 

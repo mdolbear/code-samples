@@ -1,4 +1,4 @@
-package com.nasdaq.dozerexample;
+package com.mjdsoftware.dozerexample;
 
 import com.github.dozermapper.core.BeanFactory;
 import com.github.dozermapper.core.config.BeanContainer;

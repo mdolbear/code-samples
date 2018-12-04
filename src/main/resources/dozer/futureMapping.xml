@@ -6,9 +6,9 @@
 
     <mapping>
         <class-a>java.util.Map</class-a>
-        <class-b >com.nasdaq.dozerexample.Future</class-b>
+        <class-b >com.mjdsoftware.dozerexample.Future</class-b>
 
-        <field custom-converter="com.nasdaq.dozerexample.IdCustomConverter">
+        <field custom-converter="com.mjdsoftware.dozerexample.IdCustomConverter">
             <a>underlyingId</a>
             <b>underlyingId</b>
         </field>

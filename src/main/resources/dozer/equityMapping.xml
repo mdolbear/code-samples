@@ -6,7 +6,7 @@
 
     <mapping>
         <class-a>java.util.Map</class-a>
-        <class-b >com.nasdaq.dozerexample.Equity</class-b>
+        <class-b >com.mjdsoftware.dozerexample.Equity</class-b>
     </mapping>
     
 </mappings>
