@@ -13,6 +13,7 @@ import io.kubernetes.client.models.V1PodList;
 import io.kubernetes.client.models.V1ServiceList;
 import io.kubernetes.client.util.Config;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -91,13 +92,24 @@ public class ExpandedExample {
     public static List<String> getAllNameSpaces() throws ApiException {
         V1NamespaceList listNamespace =
                 COREV1_API.listNamespace(
-                        null, "true", null, null, null, 0, null, Integer.MAX_VALUE, Boolean.FALSE);
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0,
+                        null,
+                        Integer.MAX_VALUE,
+                        Boolean.FALSE);
         List<String> list =
                 listNamespace
                         .getItems()
                         .stream()
                         .map(v1Namespace -> v1Namespace.getMetadata().getName())
                         .collect(Collectors.toList());
+
+//        List<String> list = new ArrayList<String>();
+//        list.add("default");
         return list;
     }
 
