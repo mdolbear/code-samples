@@ -65,7 +65,7 @@ public class FluxUtilsTest {
     @Test
     public void numberOfTicksTest() {
 
-        Flux<Long>   testFlux;
+        Flux<Long>      testFlux;
         FluxUtils       tempUtils = new FluxUtils();
 
         this.setNumberOfExpectedIterations(2);

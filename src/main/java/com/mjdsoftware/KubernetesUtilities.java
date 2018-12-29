@@ -10,7 +10,6 @@ import io.kubernetes.client.util.Config;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.List;
@@ -397,7 +396,6 @@ public class KubernetesUtilities {
      * Answer the v1 beta api interface
      * @return ExtensionsV1beta1Api
      */
-    @NotNull
     private ExtensionsV1beta1Api getExtensionsV1beta1Api() {
 
         ExtensionsV1beta1Api tempExtensionV1Api;
