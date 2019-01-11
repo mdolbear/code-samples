@@ -17,19 +17,13 @@ The above creates a docker image as well.
 
 #Kubernetes setup:
 
-Create nginx artifacts:
+cd k8s
 
-```kubectl create -f code/code-samples/k8s/igctl-default-backend-svc.yml```
+./constructCluster.sh
 
-```kubectl create -f code/code-samples/k8s/ingress-controller.yml```
+The tictactoe pod will be in crash back off mode until you create the database.
 
-Create k8s artifacts for mysql:
 
-cd ~/code-samples/k8s
-
-```kubectl create -f code/code-samples/k8s/mysql-persistent-volume.yml```
-
-```kubectl create -f code/code-samples/k8s/mysql-deployment.yml```
 
 Now build the database (I don't have an automated way to do this yet):
 
@@ -52,16 +46,18 @@ show tables; -- to make sure there are no tables
 
 Nothing should be present
 
-Now the k8s for the tic-tac-toe service:
+Run the following commands again:
 
-```kubectl create -f code/code-samples/k8s/tictactoe-deployment.yml```
+cd k8s
 
-'''kubectl create -f code/code-samples/k8s/tictactoe-service.yml```
+kubectl apply -f tictactoe-deployment.yml
+kubectl apply -f tictactoe-service.yml
 
 
-Now to create the k8s for the ingress controller:
+Now check the tictactoe pod by doing a 
+kubectl get pods
 
-```kubectl create -f code/code-samples/k8s/ingress.yml```
+The pod for tictactoe should now be creating properly.
 
 
 At this point on the mac, you will need to add an entry in your /etc/hosts file like so:
@@ -145,3 +141,9 @@ you should see target labels for the blackjack pod
 Now go to Status-> Targets you should see an endpoint in the state UP.
 
 If you now go to the graph page, you should be able to pick some jvm* metrics and graph them.
+
+#Swagger Documentation
+
+I've added swagger documentation for this example:
+
+```http://mytictactoe.localhost/swagger-ui.html```
