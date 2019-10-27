@@ -2,6 +2,7 @@ package com.mjdsoftware.dozerexample;
 
 import com.mjdsoftware.KubernetesUtilities;
 import io.kubernetes.client.ApiException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class KubernetesUtilitiesTest {
      * Basic test
      */
     @Test
+    @Ignore
     public void basicTest() throws Exception {
 
         List<String> tempNamespaces;

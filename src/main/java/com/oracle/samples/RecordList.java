@@ -58,7 +58,6 @@ public class RecordList {
   
     /**
      * Answer a sorted RecordList based on me
-     * @param anInputRecordList
      * @return RecordList
      */
     public RecordList mergeSort() {
@@ -77,7 +76,6 @@ public class RecordList {
     
     /**
      * Answer a sorted RecordList based on me
-     * @param anInputRecordList
      * @return RecordList
      */
     public RecordList bubbleSort() {
@@ -94,7 +92,6 @@ public class RecordList {
     
     /**
      * Basic merge
-     * @param aStartPoint Record
      * @param aStartIndex int
      * @param anEndIndex int
      * @return Record
@@ -316,7 +313,6 @@ public class RecordList {
   
     /**
      * Answer my records in bounds. Just an example use of streams and filters
-     * @param aRecordList
      * @param aLowerBound
      * @param anUpperBound
      * @return
@@ -347,7 +343,6 @@ public class RecordList {
     
     /**
      * Answer my records in bounds. Just an example use of streams and filters
-     * @param aRecordList
      * @param aLowerBound
      * @param anUpperBound
      * @return
@@ -377,7 +372,6 @@ public class RecordList {
     
     /**
      * Answer my records in bounds. Just an example use of streams and filters
-     * @param aRecordList
      * @param aLowerBound
      * @param anUpperBound
      * @return
@@ -535,7 +529,6 @@ public class RecordList {
      * @param aResult
      * @param aStart
      * @param aEnd
-     * @param aIntervalLength
      * @return boolean
      */
     protected boolean shouldContinueBinarySearch(Record aResult, 
