@@ -28,8 +28,9 @@ public class HaventSinceAnalyzerTest {
                                                this.createSampleLoginCounts());
         tempResults = tempAnalyzer.produceResult();
 
-        assertTrue("No result returned", !tempResults.isEmpty() &&
-                                                                tempResults.size() == 3 //Only Joe and Sue should be found
+        assertTrue("No result returned, or incorrect",
+                    !tempResults.isEmpty() &&
+                                    tempResults.size() == 3 //Only Joe and Sue should be found
                   );
 
         System.out.println("Results from havent since: " + tempResults.toString());

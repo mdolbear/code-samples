@@ -63,12 +63,13 @@ public class HaventSinceAnalyzer {
         tempInputCopyList.sort(this.getHaventSinceElementDateComparator());
         tempCutoffElement = this.getCutoffElement(tempInputCopyList);
 
-        //Get elements from cutoff point to end, and remove "all" of those elements
-        //This is the haven't since list
+        //Get elements from cutoff point to end, and remove "all" of those elements everywhere.
+        //The result is the haven't since list
         tempCutoffIndex = this.getInput().indexOf(tempCutoffElement);
         this.setAfterCutoff(new ArrayList<HaventSinceElement>(tempInputCopyList.subList(tempCutoffIndex,
                                                               tempInputCopyList.size())));
         this.removalAll(this.getAfterCutoff(), tempInputCopyList);
+//        tempInputCopyList.removeAll(this.getAfterCutoff()); -- this doesn't work
         this.setResult(tempInputCopyList);
 
 
@@ -129,7 +130,7 @@ public class HaventSinceAnalyzer {
     }
 
     /**
-     * Validate that a cutoff elemetn was found
+     * Validate that a cutoff element was found
      * @param aResult HaventSinceElement
      */
     private void validateCutoffElementReturned(HaventSinceElement aResult) {
@@ -144,7 +145,7 @@ public class HaventSinceAnalyzer {
     }
 
     /**
-     * Answer my date comparato
+     * Answer my date comparator
      * @return Comparator
      */
     private Comparator<HaventSinceElement> getHaventSinceElementDateComparator() {
