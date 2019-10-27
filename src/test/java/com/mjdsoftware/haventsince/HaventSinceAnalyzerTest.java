@@ -14,7 +14,8 @@ import static junit.framework.TestCase.assertTrue;
 public class HaventSinceAnalyzerTest {
 
     /**
-     * Test havent since analyzer
+     * Test havent since analyzer -- determine if something hasn't occurred since a given
+     * data
      */
     @Test
     public void haventSinceBasicTest() {
