@@ -69,7 +69,7 @@ public class HaventSinceAnalyzer {
         this.setAfterCutoff(new ArrayList<HaventSinceElement>(tempInputCopyList.subList(tempCutoffIndex,
                                                               tempInputCopyList.size())));
         this.removalAll(this.getAfterCutoff(), tempInputCopyList);
-//        tempInputCopyList.removeAll(this.getAfterCutoff()); -- this doesn't work
+
         this.setResult(tempInputCopyList);
 
 
@@ -116,29 +116,31 @@ public class HaventSinceAnalyzer {
      */
     private HaventSinceElement getCutoffElement(List<HaventSinceElement> anInputList) {
 
-        HaventSinceBinarySearch tempSearch;
-        HaventSinceElement      tempResult;
+        HaventSinceBinarySearch       tempSearch;
+        HaventSinceBinarySearchResult tempSearchResult;
+        HaventSinceElement            tempResult;
 
         tempSearch = new HaventSinceBinarySearch(anInputList);
-        tempResult = tempSearch.binarySearch(this.getCutoff(),
-                                             this.getDateFormat());
+        tempSearchResult = tempSearch.binarySearch(this.getCutoff(),
+                                                   this.getDateFormat());
 
-        this.validateCutoffElementReturned(tempResult);
+        this.validateCutoffElementReturned(tempSearchResult);
 
-        return tempResult;
+        return tempSearchResult.getElement();
 
     }
 
     /**
      * Validate that a cutoff element was found
-     * @param aResult HaventSinceElement
+     * @param aSearchResult HaventSinceBinarySearchResult
      */
-    private void validateCutoffElementReturned(HaventSinceElement aResult) {
+    private void validateCutoffElementReturned(HaventSinceBinarySearchResult aSearchResult) {
 
-        if (aResult == null) {
+        if (!aSearchResult.wasElementFound()) {
 
-            throw new IllegalArgumentException("No cutoff element found for the specified date: "
-                                                + this.getCutoff().toString());
+            throw new CutoffDateException("No cutoff element found for the specified date: "
+                                                + this.getCutoff().toString(),
+                                            aSearchResult);
 
         }
 

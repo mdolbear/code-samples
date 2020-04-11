@@ -32,14 +32,14 @@ public class HaventSinceBinarySearch {
      * @param aDateFormat String
      * @return HaventSinceElement
      */
-    public HaventSinceElement binarySearch(Date aValue,
-                                           String aDateFormat) {
+    public HaventSinceBinarySearchResult binarySearch(Date aValue,
+                                                      String aDateFormat) {
 
-        HaventSinceElement      tempResult = null;
-        int                     tempStartIndex;
-        int                     tempEndIndex;
-        int                     tempMidpointIndex;
-        Date                    tempMidpointValue;
+        HaventSinceElement              tempResult = null;
+        int                             tempStartIndex;
+        int                             tempEndIndex;
+        int                             tempMidpointIndex = 0;
+        Date                            tempMidpointValue = null;
 
         //Initialize
         tempStartIndex = 0;
@@ -67,7 +67,12 @@ public class HaventSinceBinarySearch {
 
         }
 
-        return tempResult;
+        return
+            new HaventSinceBinarySearchResult(tempResult,
+                                              tempStartIndex,
+                                              tempMidpointIndex,
+                                              tempEndIndex,
+                                              tempMidpointValue);
 
 
     }

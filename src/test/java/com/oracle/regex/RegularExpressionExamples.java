@@ -2,6 +2,10 @@ package com.oracle.regex;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -185,6 +189,74 @@ public class RegularExpressionExamples {
         }
         
     }
-    
-    
+
+
+    /**
+     * Test of not matching certain reserved words
+     */
+    @Test
+    public void notMatchingCertainWordsTest() {
+
+        String  tempTestMatches = "OR you can do this";
+        String  tempTestAnotherMatches = "or you can do this";
+        String  tempTestNoMatches = "andORto andORto blah blah blah blah blah toorand ortoand blah blah blah";
+
+        assertTrue("Should match this", this.getFirstContainedReservedWord(tempTestMatches)
+                                                    != null);
+
+        assertTrue("Should match this", this.getFirstContainedReservedWord(tempTestAnotherMatches)
+                                                                != null);
+
+
+        assertTrue("Should not match this",
+                        this.getFirstContainedReservedWord(tempTestNoMatches) == null);
+    }
+
+
+    /**
+     * Answer whether aLine contains any reserved words. Answer null if there are none, or
+     * the reserved word if it encounters one
+     * @param aLine String
+     * @return String
+     */
+    private String getFirstContainedReservedWord(String aLine) {
+
+        Iterator<Pattern>   tempPatterns;
+        String              tempFound = null;
+        Matcher             tempMatcher;
+
+        tempPatterns = this.getReservedWordPatterns().iterator();
+        while (tempPatterns.hasNext() && (tempFound == null)) {
+
+            tempMatcher = tempPatterns.next().matcher(aLine);
+            if (tempMatcher.find()) {
+
+                tempFound = tempMatcher.pattern().toString();
+            }
+        }
+
+        return tempFound;
+
+    }
+
+
+    /**
+     * Answer the patterns needed for reserved words
+     * @return List
+     */
+    private List<Pattern> getReservedWordPatterns() {
+
+        String[]                tempRegexReservedWords = {"\\bOR\\b", "\\bAND\\b", "\\bTO\\b"};
+        List<Pattern>           tempPatterns = new ArrayList<Pattern>();
+
+
+        for (String aReservedWord: tempRegexReservedWords) {
+
+           tempPatterns.add(Pattern.compile(aReservedWord, Pattern.CASE_INSENSITIVE));
+        }
+
+        return tempPatterns;
+
+    }
+
 }
