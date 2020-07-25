@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class HaventSinceBinarySearch {
@@ -32,14 +32,15 @@ public class HaventSinceBinarySearch {
      * @param aDateFormat String
      * @return HaventSinceElement
      */
-    public HaventSinceBinarySearchResult binarySearch(Date aValue,
-                                                      String aDateFormat) {
+    public HaventSinceBinarySearchResult binarySearch(ZonedDateTime aValue,
+                                                      String aDateFormat,
+                                                      String aTimezone) {
 
         HaventSinceElement              tempResult = null;
         int                             tempStartIndex;
         int                             tempEndIndex;
         int                             tempMidpointIndex = 0;
-        Date                            tempMidpointValue = null;
+        ZonedDateTime                   tempMidpointValue = null;
 
         //Initialize
         tempStartIndex = 0;
@@ -48,17 +49,18 @@ public class HaventSinceBinarySearch {
         while (this.shouldContinueBinarySearch(tempResult, tempStartIndex, tempEndIndex)) {
 
             tempMidpointIndex = (tempStartIndex + tempEndIndex) >>> 1;
-            tempMidpointValue = this.getInputList().get(tempMidpointIndex).getDate(aDateFormat);
+            tempMidpointValue = this.getInputList().get(tempMidpointIndex).getDate(aDateFormat,
+                                                                                   aTimezone);
 
             if (tempMidpointValue.equals(aValue)) {
 
                 tempResult = this.getInputList().get(tempMidpointIndex);
             }
-            else if (aValue.after(tempMidpointValue)){
+            else if (aValue.compareTo(tempMidpointValue) > 0){
 
                 tempStartIndex = tempMidpointIndex+1;
             }
-            else if (aValue.before(tempMidpointValue)) {
+            else if (aValue.compareTo(tempMidpointValue) < 0) {
 
                 tempEndIndex = tempMidpointIndex-1;
             }

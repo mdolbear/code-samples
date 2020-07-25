@@ -3,6 +3,11 @@ package com.mjdsoftware.haventsince;
 import lombok.*;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +21,7 @@ public class LoginCount implements HaventSinceElement {
     private String           intervalDateTime;
 
     @Getter(AccessLevel.PRIVATE) @Setter(AccessLevel.PRIVATE)
-    private Date myDate;
+    private ZonedDateTime    myDate;
 
     /**
      * Answer an instance of me for the args below
@@ -39,16 +44,18 @@ public class LoginCount implements HaventSinceElement {
     /**
      * Answer my date
      * @param aDateFormat String
-     * @return Date
+     * @param aTimezone
+     * @return ZonedDateTime
      */
-    public Date getDate(String aDateFormat) {
+    public ZonedDateTime getDate(String aDateFormat,
+                                 String aTimezone) {
 
-        Date                tempResult;
+        ZonedDateTime                tempResult;
 
         tempResult = this.getMyDate();
         if (tempResult == null) {
 
-            tempResult = this.convertDateForFormat(aDateFormat);
+            tempResult = this.convertDateForFormat(aDateFormat, aTimezone);
             this.setMyDate(tempResult);
         }
 
@@ -59,19 +66,21 @@ public class LoginCount implements HaventSinceElement {
     /**
      * Answer my date for aDateFormat
      * @param aDateFormat  String
-     * @return Date
+     * @return ZonedDateTime
      */
-    private Date convertDateForFormat(String aDateFormat) {
+    private ZonedDateTime convertDateForFormat(String aDateFormat,
+                                               String aTimezone) {
 
-        SimpleDateFormat tempFormat;
-        Date tempResult;
+        DateTimeFormatter       tempFormat;
+        LocalDate               tempLocalTime;
 
-        tempFormat = new SimpleDateFormat(aDateFormat);
+        tempFormat = DateTimeFormatter.ofPattern(aDateFormat);
 
         try {
 
-            tempResult = tempFormat.parse(this.getIntervalDateTime());
-            return tempResult;
+            tempLocalTime = LocalDate.parse(this.getIntervalDateTime(),
+                                            tempFormat);
+            return tempLocalTime.atStartOfDay(ZoneId.of(aTimezone));
 
         }
         catch (Exception e) {

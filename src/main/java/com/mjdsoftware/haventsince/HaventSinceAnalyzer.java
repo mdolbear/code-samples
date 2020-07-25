@@ -4,13 +4,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.ZonedDateTime;
 import java.util.*;
 
 public class HaventSinceAnalyzer {
 
 
     @Getter(AccessLevel.PRIVATE) @Setter(AccessLevel.PRIVATE)
-    private Date cutoff;
+    private ZonedDateTime cutoff;
 
     @Getter(AccessLevel.PRIVATE) @Setter(AccessLevel.PRIVATE)
     private List<HaventSinceElement> input;
@@ -31,11 +32,11 @@ public class HaventSinceAnalyzer {
 
     /**
      * Answer an instance of me for the following arguments:
-     * @param aCutoff Date
+     * @param aCutoff ZonedDateTime
      * @param aDateFormat String
      * @param anInputList List
      */
-    public HaventSinceAnalyzer(Date aCutoff,
+    public HaventSinceAnalyzer(ZonedDateTime aCutoff,
                                String aDateFormat,
                                List<HaventSinceElement> anInputList) {
 
@@ -50,7 +51,7 @@ public class HaventSinceAnalyzer {
      * Produce result
      * @return List
      */
-    public List<HaventSinceElement> produceResult() {
+    public List<HaventSinceElement> produceResult(String aTimezone) {
 
         HaventSinceElement          tempCutoffElement;
         int                         tempCutoffIndex;
@@ -60,8 +61,8 @@ public class HaventSinceAnalyzer {
         tempInputCopyList = new ArrayList<HaventSinceElement>(this.getInput());
 
         //Sort input copy and find cutoff point
-        tempInputCopyList.sort(this.getHaventSinceElementDateComparator());
-        tempCutoffElement = this.getCutoffElement(tempInputCopyList);
+        tempInputCopyList.sort(this.getHaventSinceElementDateComparator(aTimezone));
+        tempCutoffElement = this.getCutoffElement(tempInputCopyList, aTimezone);
 
         //Get elements from cutoff point to end, and remove "all" of those elements everywhere.
         //The result is the haven't since list
@@ -114,7 +115,8 @@ public class HaventSinceAnalyzer {
      * @param anInputList List
      * @return HaventSinceElement
      */
-    private HaventSinceElement getCutoffElement(List<HaventSinceElement> anInputList) {
+    private HaventSinceElement getCutoffElement(List<HaventSinceElement> anInputList,
+                                                String aTimezone) {
 
         HaventSinceBinarySearch       tempSearch;
         HaventSinceBinarySearchResult tempSearchResult;
@@ -122,7 +124,8 @@ public class HaventSinceAnalyzer {
 
         tempSearch = new HaventSinceBinarySearch(anInputList);
         tempSearchResult = tempSearch.binarySearch(this.getCutoff(),
-                                                   this.getDateFormat());
+                                                   this.getDateFormat(),
+                                                    aTimezone);
 
         this.validateCutoffElementReturned(tempSearchResult);
 
@@ -148,12 +151,13 @@ public class HaventSinceAnalyzer {
 
     /**
      * Answer my date comparator
+     * @param aTimezone String
      * @return Comparator
      */
-    private Comparator<HaventSinceElement> getHaventSinceElementDateComparator() {
+    private Comparator<HaventSinceElement> getHaventSinceElementDateComparator(String aTimezone) {
 
         return (c1, c2) ->
-                c1.getDate(this.getDateFormat()).compareTo(c2.getDate(this.getDateFormat()));
+                c1.getDate(this.getDateFormat(), aTimezone).compareTo(c2.getDate(this.getDateFormat(), aTimezone));
 
     }
 

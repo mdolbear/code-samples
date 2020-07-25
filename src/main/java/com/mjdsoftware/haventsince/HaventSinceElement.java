@@ -1,5 +1,6 @@
 package com.mjdsoftware.haventsince;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -8,9 +9,11 @@ public interface HaventSinceElement {
     /**
      * Answer my date
      * @param aDateFormat String
-     * @return Date
+     * @param aTimezone String
+     * @return ZonedDateTime
      */
-    public Date getDate(String aDateFormat);
+    public ZonedDateTime getDate(String aDateFormat,
+                                 String aTimezone);
 
     /**
      * Answer my characteristics

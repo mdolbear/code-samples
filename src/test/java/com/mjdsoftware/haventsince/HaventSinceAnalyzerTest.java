@@ -2,9 +2,11 @@ package com.mjdsoftware.haventsince;
 
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +16,8 @@ import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 
 public class HaventSinceAnalyzerTest {
+
+    private static final String TIMEZONE = "America/Denver";
 
     /**
      * Test havent since analyzer -- determine if something hasn't occurred since a given
@@ -25,10 +29,10 @@ public class HaventSinceAnalyzerTest {
         HaventSinceAnalyzer         tempAnalyzer;
         List<HaventSinceElement>    tempResults;
 
-        tempAnalyzer = new HaventSinceAnalyzer(this.getCutoffTestDate(),
+        tempAnalyzer = new HaventSinceAnalyzer(this.getCutoffTestDate(TIMEZONE),
                                                HaventSinceAnalyzer.YEAR_MN_DY_FORMAT,
                                                this.createSampleLoginCounts());
-        tempResults = tempAnalyzer.produceResult();
+        tempResults = tempAnalyzer.produceResult(TIMEZONE);
 
         assertTrue("No result returned, or incorrect",
                     !tempResults.isEmpty() &&
@@ -43,9 +47,9 @@ public class HaventSinceAnalyzerTest {
      * Answer my cutoff test date
      * @return Date
      */
-    private Date getCutoffTestDate() {
+    private ZonedDateTime getCutoffTestDate(String aTimezone) {
 
-        return this.basicGetCutoffTestDate("2019-03-01");
+        return this.basicGetCutoffTestDate("2019-03-01", aTimezone);
 
     }
 
@@ -62,11 +66,11 @@ public class HaventSinceAnalyzerTest {
         CutoffDateException         tempException = null;
 
         try {
-            tempAnalyzer = new HaventSinceAnalyzer(this.getCutoffTestDateNotInData(),
+            tempAnalyzer = new HaventSinceAnalyzer(this.getCutoffTestDateNotInData(TIMEZONE),
                                                    HaventSinceAnalyzer.YEAR_MN_DY_FORMAT,
                                                    this.createSampleLoginCounts());
 
-            tempResults = tempAnalyzer.produceResult();
+            tempResults = tempAnalyzer.produceResult(TIMEZONE);
             fail("Should have thrown an exception");
 
         }
@@ -79,7 +83,7 @@ public class HaventSinceAnalyzerTest {
                                                HaventSinceAnalyzer.YEAR_MN_DY_FORMAT,
                                                this.createSampleLoginCounts());
 
-        tempResults = tempAnalyzer.produceResult();
+        tempResults = tempAnalyzer.produceResult(TIMEZONE);
 
         assertTrue("No result returned, or incorrect",
                 !tempResults.isEmpty() &&
@@ -95,34 +99,38 @@ public class HaventSinceAnalyzerTest {
      * Answer my cutoff test date
      * @return Date
      */
-    private Date getCutoffTestDateNotInData() {
+    private ZonedDateTime getCutoffTestDateNotInData(String aTimezone) {
 
-       return this.basicGetCutoffTestDate("2019-03-15");
+       return this.basicGetCutoffTestDate("2019-03-15", aTimezone);
 
     }
 
     /**
      * Answer my cutoff test date
      * @param aDateString String
-     * @return Date
+     * @return ZonedDateTime
      */
-    private Date basicGetCutoffTestDate(String aDateString) {
+    private ZonedDateTime basicGetCutoffTestDate(String aDateString,
+                                                 String aTimezone) {
 
-        SimpleDateFormat tempFormat;
-        Date tempResult;
+        DateTimeFormatter       tempFormat;
+        LocalDate               tempLocalTime;
 
-        tempFormat = new SimpleDateFormat(HaventSinceAnalyzer.YEAR_MN_DY_FORMAT);
+        tempFormat = DateTimeFormatter.ofPattern(HaventSinceAnalyzer.YEAR_MN_DY_FORMAT);
 
         try {
 
-            tempResult = tempFormat.parse(aDateString);
-            return tempResult;
+            tempLocalTime = LocalDate.parse(aDateString,
+                                             tempFormat);
+            return tempLocalTime.atStartOfDay(ZoneId.of(aTimezone));
 
         }
         catch (Exception e) {
 
+            e.printStackTrace();
             throw new RuntimeException("Date parse failure");
         }
+
 
     }
 

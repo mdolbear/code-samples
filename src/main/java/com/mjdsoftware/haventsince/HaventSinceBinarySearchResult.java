@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor(force = true)
@@ -16,7 +16,7 @@ public class HaventSinceBinarySearchResult {
     private int midpointIndex;
     private int endIndex;
 
-    private Date midpointDate;
+    private ZonedDateTime midpointDate;
 
 
     /**
