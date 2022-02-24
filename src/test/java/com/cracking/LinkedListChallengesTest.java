@@ -45,8 +45,8 @@ public class LinkedListChallengesTest {
     
     /**
      * Build List from anArray[]. 
-     * @param anArray K[]
-     * @param aValue V[]
+     * @param aKeys K[]
+     * @param aValues V[]
      * @return LinkedNode<K,V>
      */
     protected <K,V> LinkedList<K,V> buildListFrom(K[] aKeys, 
@@ -289,6 +289,34 @@ public class LinkedListChallengesTest {
         System.out.println("Reverse Test Reversed List: " + tempBuilder.toString());
         assertTrue("Reverse failed", tempList.getHead().equals(tempOriginalLastNode) && tempList.getLastNode().equals(tempOriginalFirstNode));
         
+    }
+
+    /**
+     * Test single reverse
+     */
+    @Test
+    public void reverseSingleTest() {
+
+        String[]                                                tempKeys = {"a", "b", "c", "d", "e", "f", "h","i", "j", "k", "l", "m", "n", "o"};
+        String[]                                                tempValues = {"a", "b", "c", "d", "e", "f", "h","i", "j", "k", "l", "m", "n", "o"};
+        LinkedList<String, String>                              tempList;
+        StringBuilder                                           tempBuilder;
+        LinkedNode<String, String>                              tempOriginalFirstNode;
+        LinkedNode<String, String>                              tempOriginalLastNode;
+
+        tempList = this.buildListFrom(tempKeys, tempValues, this.createStringComparator());
+        tempBuilder = new StringBuilder();
+        tempList.dumpListTo(tempBuilder);
+        System.out.println("Reverse Test Original List: " + tempBuilder.toString());
+        tempOriginalLastNode = tempList.getLastNode();
+        tempOriginalFirstNode = tempList.getHead();
+
+        tempList.reverseSingle();
+        tempBuilder = new StringBuilder();
+        tempList.dumpListTo(tempBuilder);
+        System.out.println("Reverse Test Reversed List: " + tempBuilder.toString());
+        assertTrue("Reverse failed", tempList.getHead().equals(tempOriginalLastNode) && tempList.getLastNode().equals(tempOriginalFirstNode));
+
     }
     
     /**

@@ -311,6 +311,22 @@ public class LinkedList<K, V> {
         }
         
     }
+
+    /**
+     * Reverse me as a singly linked list
+     */
+    public void reverseSingle() {
+
+        LinkedNode<K,V> tempNewHead;
+
+        if (!this.isEmpty()) {
+
+            tempNewHead = this.getHead().reverseSingle();
+            this.setHead(tempNewHead);
+
+        }
+
+    }
     
     /**
      * Answer the last node

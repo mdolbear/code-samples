@@ -184,7 +184,6 @@ public class LinkedNode<K, V> {
     /**
      * Delete last node from me. Answer the LinkedNode<K,V> that was
      * deleted or null if nothing was deleted. Won't delete the very last node
-     * @param aKey K
      * @return LinkedNode<K,V>
      */
     public LinkedNode<K,V> deleteLastNode() {
@@ -223,7 +222,7 @@ public class LinkedNode<K, V> {
     /**
      * Delete a node from me with aKey. Answer the LinkedNode<K,V> that was
      * deleted or null if nothing was deleted
-     * @param aKey K
+     * @param aNode LinkedNode
      * @return LinkedNode<K,V>
      */
     public LinkedNode<K,V> deleteCenterNode(LinkedNode<K,V> aNode) {
@@ -352,7 +351,7 @@ public class LinkedNode<K, V> {
     
     /**
      * Push elements onto aStack until empty
-     * @param aStack<LinkedNode<K,V>>
+     * @return Stack
      */
     public Stack<LinkedNode<K,V>> pushElementsUntilEmpty() {
         
@@ -618,6 +617,35 @@ public class LinkedNode<K, V> {
         return tempPrevious;
                 
     }
+
+    /**
+     * Reverse me, acting like I am a singly linked list. Answer my new first node
+     * @return LinkedNode<K,V>
+     */
+    public LinkedNode<K,V> reverseSingle() {
+
+        LinkedNode<K,V> tempCurrent;
+        LinkedNode<K,V> tempPrevious;
+        LinkedNode<K,V> tempNewNextNode;
+
+        tempPrevious = this;
+        tempCurrent = this.getNextNode();
+        while (tempCurrent != null) {
+
+            tempNewNextNode = tempPrevious;
+            tempPrevious = tempCurrent;
+
+            tempCurrent = tempCurrent.getNextNode();
+            tempPrevious.setNextNode(tempNewNextNode);
+
+        }
+
+        //Set the original head next node to point to null
+        this.setNextNode(null);
+
+        return tempPrevious;
+
+    }
     
     /**
      * Swap links
@@ -632,10 +660,11 @@ public class LinkedNode<K, V> {
         
         
     }
+
     
     /**
      * Insert aNode as the last node
-     * @param aLinkedNode LinkedNode<K,V>
+     * @param aNode LinkedNode<K,V>
      */
     public void insertAsLast(LinkedNode<K,V> aNode) {
         

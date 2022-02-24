@@ -113,7 +113,6 @@ public class MovingAverageWithQueue {
     /**
      * Handle for queue less than window size
      * @param aValue
-     * @param tempSum
      * @return double
      */
     protected double handleForQueueSizeLessThanWindowSize(double aValue) {
@@ -121,7 +120,7 @@ public class MovingAverageWithQueue {
         double tempResult;
         Double  tempSum = new Double(0.0);
         
-        this.getQueue().offer(new Double(aValue));
+        this.getQueue().offer(Double.valueOf(aValue));
         
 //        for (int i = 0; i < this.getQueue().size(); i++) {
 //            
@@ -130,7 +129,7 @@ public class MovingAverageWithQueue {
 //        }
 // The stream code below replaces the for loop in this comment
         
-        tempSum = this.getQueue().stream().reduce(new Double(0.0), (a,b)->(a+b));
+        tempSum = this.getQueue().stream().reduce(Double.valueOf(0.0), (a,b)->(a+b));
         
         tempResult = tempSum.doubleValue()/this.getQueue().size();
         this.setAverage(tempResult);
