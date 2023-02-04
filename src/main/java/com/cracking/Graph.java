@@ -153,7 +153,6 @@ public class Graph<T> {
      * Recursively perform topological sort
      * 
      * @param aVertex
-     * @param aVisited
      * @param aStack
      */
     protected void basicPeformTopolocialSort(Vertex<T> aVertex,

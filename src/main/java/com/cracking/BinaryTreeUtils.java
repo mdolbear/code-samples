@@ -41,7 +41,7 @@ public class BinaryTreeUtils {
 
     /**
      * Perform inorder traversal
-     * @param aRootNode BinaryTreeNode
+     * @param aNode BinaryTreeNode
      * @param aBuilder StringBuilder
      */
     public <E> void traverseInorder(BinaryTreeNode<E> aNode, 
@@ -60,7 +60,7 @@ public class BinaryTreeUtils {
     
     /**
      * Answer whether aTreeNode1<E> is equal from aStartingTreeNode<E>
-     * @param aTreeNode1<E> BinaryTreeNode<E>
+     * @param aBinaryTreeNode1<E> BinaryTreeNode<E>
      * @param aCurrentTreeNode<E> BinaryTreeNode<E>
      * @return boolean
      */
@@ -105,7 +105,7 @@ public class BinaryTreeUtils {
     
     /**
      * Perform preorder traversal
-     * @param aRootNode BinaryTreeNode
+     * @param aNode BinaryTreeNode
      * @param aBuilder StringBuilder
      */
     public <E> void traversePreorder(BinaryTreeNode<E> aNode, 
@@ -124,7 +124,7 @@ public class BinaryTreeUtils {
     
     /**
      * Perform postorder traversal
-     * @param aRootNode BinaryTreeNode
+     * @param aNode BinaryTreeNode
      * @param aBuilder StringBuilder
      */
     public <E> void traversePostorder(BinaryTreeNode<E> aNode, 
@@ -148,7 +148,7 @@ public class BinaryTreeUtils {
     
     /**
      * Perform inorder traversal iteratively
-     * @param aRootNode BinaryTreeNode
+     * @param aNode BinaryTreeNode
      * @param aBuilder StringBuilder
      */
     public <E> void traverseInorderIteratively(BinaryTreeNode<E> aNode, 
@@ -186,7 +186,7 @@ public class BinaryTreeUtils {
     
     /**
      * Perform preorder traversal iteratively
-     * @param aRootNode BinaryTreeNode
+     * @param aNode BinaryTreeNode
      * @param aBuilder StringBuilder
      */
     public <E> void traversePreorderIteratively(BinaryTreeNode<E> aNode, 
@@ -259,7 +259,7 @@ public class BinaryTreeUtils {
  
     /**
      * Create depth linked lists
-     * @param aRootNode BinaryTreeNode
+     * @param aNode BinaryTreeNode
      * @param aVisitor DepthLinkedLists
      * @param aDepthValue int
      */
@@ -351,8 +351,8 @@ public class BinaryTreeUtils {
     /**
      * Create and merge all legal permutations for how a bst tree was created
      * @param aRootArray E[]
-     * @param aSubtreeArray1List List<E[]>
-     * @param aSubtreeArray2List List<E[]>
+     * @param aLeftSubtree List<E[]>
+     * @param aRightSubtree List<E[]>
      * @return List<E[]>
      */
     public <E> List<E[]> produceAllLegalBSTPermutationsFor(E[] aRootArray, 
@@ -409,7 +409,6 @@ public class BinaryTreeUtils {
  
     /**
      * Create arrays for
-     * @param aRootArray
      * @param aLeftSubtree
      * @param aRightSubtree
      * @return List<E>

@@ -157,7 +157,7 @@ public class Pipeline {
      */
     protected Comparator<OilWell> getYComparator() {
         
-        return (o1, o2) -> Integer.compare(o1.getY(), o2.getX());
+        return (o1, o2) -> Integer.compare(o1.getY(), o2.getY());
         
     }
     
