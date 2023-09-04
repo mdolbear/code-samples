@@ -273,8 +273,70 @@ public class CodeExperimentTest {
         System.out.println("Index found: " + tempIndex);
         
     }
-    
-    
+
+    /**
+     * Canned binary search on object
+     */
+    @Test
+    public void cannedBinarySearchObject() {
+
+        List<Record> tempList = new ArrayList<>();
+        int          tempResultIndex;
+
+        //Add objects and sort
+        tempList.add(new Record(9));
+        tempList.add(new Record(7));
+        tempList.add(new Record(5));
+
+        tempList.sort((r1, r2) -> r1.getKey() - r2.getKey());
+
+        assertTrue("Was not sorted",
+                    tempList.get(0).getKey() <= tempList.get(1).getKey());
+
+        Comparator<Record> tempComparator = new Comparator<Record>() {
+            public int compare(Record r1, Record r2)
+            {
+                return r1.getKey() - r2.getKey();
+            }
+        };
+
+
+        //Perform binary search via Collections
+        tempResultIndex =
+                Collections.binarySearch(tempList, new Record(7), tempComparator);
+        assertTrue("Index is incorrect", tempResultIndex == 1);
+
+
+
+    }
+
+
+    /**
+     * Canned binary search array
+     */
+    @Test
+    public void cannedBinarySearchArray() {
+        int[] tempArray = {9,7,5};
+        int               tempResultIndex;
+        Stream            tempInts;
+
+        //Add objects and sort
+        Arrays.sort(tempArray);
+
+        assertTrue("Was not sorted",
+                tempArray[0] <= tempArray[1]);
+
+
+        //Perform binary search via Collections
+        tempResultIndex =
+                Arrays.binarySearch(tempArray, 7);
+        assertTrue("Index is incorrect", tempResultIndex == 1);
+
+
+
+    }
+
+
     /**
      * Moving average test
      */

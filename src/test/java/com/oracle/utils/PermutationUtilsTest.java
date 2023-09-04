@@ -154,6 +154,7 @@ public class PermutationUtilsTest {
             }
             
             System.out.println("}");
+
         }
         
     }
