@@ -166,6 +166,16 @@ public class RomanNumeralTests {
 
         }
 
+        //Blank
+        try {
+            tempRomainNumerals = "VXRU";
+            tempResult = tempEvaluator.evaluate(tempRomainNumerals);
+            Assertions.fail("Should fail");
+
+        } catch (IllegalArgumentException e) {
+
+        }
+
         //Too many X
         try {
             tempRomainNumerals = "XXXX";
