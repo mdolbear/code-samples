@@ -165,17 +165,5 @@ public class RomanNumeralParser {
         return this.getParsedNumeralHistory().peekLast();
     }
 
-    /**
-     * Answer last input value in history
-     * @return String
-     */
-    public String getSecondToLastInputValue() {
-
-        Object tempLastValue = this.getParsedNumeralHistory().peekLast();
-        int    tempIdx = this.getParsedNumeralHistory().lastIndexOf(tempLastValue);
-
-        return this.getParsedNumeralHistory().get(tempIdx - 1);
-
-    }
 
 }

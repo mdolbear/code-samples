@@ -7,7 +7,7 @@ import lombok.Setter;
 public class RomanNumeralEvaluator {
 
     /**
-     * Answer a default instandce
+     * Answer a default instance
      */
     public RomanNumeralEvaluator() {;
     }

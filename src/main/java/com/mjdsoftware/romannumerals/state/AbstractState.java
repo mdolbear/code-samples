@@ -84,12 +84,5 @@ public abstract class AbstractState {
         return this.getSubject().getLastInputValue();
     }
 
-    /**
-     * Answer my subject's second to last input value
-     * @return String
-     */
-    protected String getSubjectSecondToLastInputValue() {
-        return this.getSubject().getSecondToLastInputValue();
-    }
 
 }

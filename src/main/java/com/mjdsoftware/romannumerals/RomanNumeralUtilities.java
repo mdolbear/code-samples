@@ -135,12 +135,11 @@ public class RomanNumeralUtilities {
      */
     private boolean isPowerOf10(String anInput) {
 
+        double      tempLogResult;
         int tempValue = this.getValueForDigit(anInput);
-        return
-                 tempValue == 10
-                        || tempValue == 100
-                        || tempValue == 1000
-                        || tempValue == 10000;
+
+        tempLogResult = Math.log10(tempValue);
+        return tempLogResult%1 == 0;
 
     }
 
