@@ -11,7 +11,7 @@ public class DeleteAndEarn {
 
     public static void main(String[] args) {
 
-        Integer[] numbers = {1,2,3,4};
+        Integer[] numbers = {2,2,3,3,3,5};
         DeleteAndEarn tempEarner = new DeleteAndEarn();
         log.info("Result = {}", tempEarner.deleteAndEarn(numbers));
 
@@ -51,20 +51,28 @@ public class DeleteAndEarn {
                                    Integer[] aNumbers,
                                    Map<Integer, List<Integer>> aResults) {
 
-        aNumbers =
-                this.retrieveAllTargetNumbersFrom(aTargetNumber,
-                                                  aNumbers,
-                                                   aResults);
-        List<Integer> tempNextCandidateNumbers =
-                this.getNextCandidateNumbers(aTargetNumber, aNumbers);
+        Integer tempTargetNumber = aTargetNumber;
 
-        log.info("Next candidates = {}", tempNextCandidateNumbers);
+        while (aNumbers.length > 0) {
 
-        for (Integer aCandidate: tempNextCandidateNumbers) {
+            aNumbers =
+                    this.retrieveAllTargetNumbersFrom(tempTargetNumber,
+                                                      aNumbers,
+                                                      aResults);
+            List<Integer> tempNextCandidateNumbers =
+                    this.getNextCandidateNumbers(tempTargetNumber, aNumbers);
 
-            this.basicDeleteAndEarn(aCandidate,
-                                    aNumbers,
-                                    aResults);
+            log.info("Next candidates to delete = {}", tempNextCandidateNumbers);
+
+            for (Integer aCandidate : tempNextCandidateNumbers) {
+                aNumbers = this.removeTargetNumberFrom(aCandidate, aNumbers);
+            }
+
+            //Get next target number
+            if (aNumbers.length > 0) {
+                tempTargetNumber = aNumbers[0];
+            }
+
         }
 
     }
@@ -143,13 +151,8 @@ public class DeleteAndEarn {
         List<Integer> tempResult = new ArrayList<>();
         List<Integer> tempExistingNumbers = Arrays.asList(aNumbers);
 
-        if (tempExistingNumbers.contains(aTargetNumber-1))  {
-            tempResult.add(aTargetNumber-1);
-        }
-
-        if (tempExistingNumbers.contains(aTargetNumber+1))  {
-            tempResult.add(aTargetNumber+1);
-        }
+        tempResult.add(aTargetNumber-1);
+        tempResult.add(aTargetNumber+1);
 
         return tempResult;
 
