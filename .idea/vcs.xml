@@ -3,7 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../blackjack" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../dataTranslator" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../kafkaTool" vcs="Git" />
   </component>
 </project>

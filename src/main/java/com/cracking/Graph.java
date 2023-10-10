@@ -137,7 +137,7 @@ public class Graph<T> {
             
             if (!tempVertices.get(i).isVisited()) {
                 
-                this.basicPeformTopolocialSort(tempVertices.get(i),
+                this.basicPerformTopologicalSort(tempVertices.get(i),
                                                tempResult);
                 
             }
@@ -155,8 +155,8 @@ public class Graph<T> {
      * @param aVertex
      * @param aStack
      */
-    protected void basicPeformTopolocialSort(Vertex<T> aVertex,
-                                            Stack<Vertex<T>> aStack) {
+    protected void basicPerformTopologicalSort(Vertex<T> aVertex,
+                                               Stack<Vertex<T>> aStack) {
       
         
         Iterator<Vertex<T>>    tempAdjacentVertices;
@@ -172,7 +172,7 @@ public class Graph<T> {
             tempCurrent = tempAdjacentVertices.next();
             if (!tempCurrent.isVisited()) {
                 
-                this.basicPeformTopolocialSort(tempCurrent, aStack);
+                this.basicPerformTopologicalSort(tempCurrent, aStack);
             }
         }
         
